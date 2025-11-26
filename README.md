@@ -6,13 +6,13 @@
 
 This dashboard provides an analytical overview of Netflix’s sample content from 2010-2022.
 It helps stakeholders understand:
-a) The size of Netflix's content library
-b) Distribution of TV shows vs movies
-c) Release trends over time
-d) Global content availability and consumption
-e) Genre-based filtering
-f) Viewer preferences by certificate rating
-g) Runtime insights for movies
+- The size of Netflix's content library
+- Distribution of TV shows vs movies
+- Release trends over time
+- Global content availability and consumption
+- Genre-based filtering
+- Viewer preferences by certificate rating
+- Runtime insights for movies
 
 The dashboard can support content strategy, regional expansion decisions, and catalog optimization.
 
