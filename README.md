@@ -1,6 +1,5 @@
 # Netflix Sample Data Dashboard
 
-### Dashboard Link : https://app.powerbi.com/groups/me/reports/384d017e-e935-44dc-9e7d-1626c1a36de1/ReportSection
 
 ## Problem Statement
 
@@ -39,12 +38,7 @@ The dashboard can support content strategy, regional expansion decisions, and ca
 - step 14 : Stack column chart to show the TV rating for the content present in the sample data of Netflix.
 
 
-# Snapshot of Dashboard (Power BI Service)
-
-![dashboard_snapo](https://user-images.githubusercontent.com/102996550/174096257-11f1aae5-203d-44fc-bfca-25d37faf3237.jpg)
-
- 
- # Report Snapshot (Power BI DESKTOP)
+  # Report Snapshot (Power BI DESKTOP)
 
  
 ![Dashboard_upload](https://user-images.githubusercontent.com/102996550/174074051-4f08287a-0568-4fdf-8ac9-6762e0d8fa94.jpg)
