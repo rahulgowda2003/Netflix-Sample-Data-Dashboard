@@ -4,120 +4,40 @@
 
 ## Problem Statement
 
-This dashboard helps the airlines understand their customers better. It helps the airlines know if their customers are satisfied with their services. Through different ratings, they get to know their improvement area, & thus they can improve their services by identifying these area. It also lets them know the average delay & departure time, thus since by using this dashboard they have identified this problem, they can further work on factors responsible for these unwanted delays.
+This dashboard provides an analytical overview of Netflix’s sample content from 2010-2022.
+It helps stakeholders understand:
+a) The size of Netflix's content library
+b) Distribution of TV shows vs movies
+c) Release trends over time
+d) Global content availability and consumption
+e) Genre-based filtering
+f) Viewer preferences by certificate rating
+g) Runtime insights for movies
 
-Since, number of neutral/dissatisfied customers (almost 57 %) are more than satisfied customers (around 43 %), thus in all they must work on improving their services. 
-
-Also since average delay in arrival & departure both is 15 minutes, thus they must try to reduce it.
+The dashboard can support content strategy, regional expansion decisions, and catalog optimization.
 
 
 ### Steps followed 
 
-- Step 1 : Load data into Power BI Desktop, dataset is a csv file.
-- Step 2 : Open power query editor & in view tab under Data preview section, check "column distribution", "column quality" & "column profile" options.
-- Step 3 : Also since by default, profile will be opened only for 1000 rows so you need to select "column profiling based on entire dataset".
-- Step 4 : It was observed that in none of the columns errors & empty values were present except column named "Arrival Delay".
-- Step 5 : For calculating average delay time, null values were not taken into account as only less than 1% values are null in this column(i.e column named "Arrival Delay") 
-- Step 6 : In the report view, under the view tab, theme was selected.
-- Step 7 : Since the data contains various ratings, thus in order to represent ratings, a new visual was added using the three ellipses in the visualizations pane in report view. 
-- Step 8 : Visual filters (Slicers) were added for four fields named "Class", "Customer Type", "Gate Location" & "Type of travel".
-- Step 9 : Two card visuals were added to the canvas, one representing average departure delay in minutes & other representing average arrival delay in minutes.
+- Step 1 : Load the data into Power BI Desktop, the file was in csv format.
+- Step 2 : Opened power query editor and in view tab, under Data preview section, check "column distribution", "column quality" and "column profile" options.
+- Step 3 : By default, column profile will be opened only for 1000 rows, so you will need to select "column profiling based on entire dataset".
+- Step 4 : It was observed that in none of the columns errors and empty values were present except in columns named "Rating", "Release Date", "Country",
+           "Cast" and "Director".
+- Step 5 : For calculating null values, replaced the null values with the mode of the same column(for the numerical values present having <1% null values and                 categorical column with <1% null values were removed) and for the other categorical values with >5% null values, filled the null values as "Unknown".
+- step 6 : New column named "Release Year" made to extract the year from "Release Date" column, the null values present in the "Release Year" was filled with
+           mode.
+- Step 7 : In the report view, added Netflix's logo and name tag.
+- Step 8 : Visual filters (Slicers) were added for two fields named "Release Date" and "Genre".
+- step 9 : Five measures careated in the new model named "Measure's Table" and one in Netflix's table. Measure's Table contains Avg movie runtime, count of cast,
+           movies, num of titles and TV shows, where as in the Netflix's table contains Runtime measure.
+- Step 10 : Five card visuals were added to the canvas/dashboard, representing "count of cast", "TV Shows", "Movies", "Total Content" and "Average Movies Runtime".
            Using visual level filter from the filters pane, basic filtering was used & null values were unselected for consideration into average calculation.
-           
-           Although, by default, while calculating average, blank values are ignored.
-- Step 10 : A bar chart was also added to the report design area representing the number of satisfied & neutral/unsatisfied customers. While creating this visual, field named "Gender" was also added to the Legends bucket, thus number of customers are also seggregated according the gender. 
-- Step 11 : Ratings Visual was used to represent different ratings mentioned below,
+- Step 11 : Filled map was inserted to showcase the content consumed by the countries around the world. 
+- Step 12 : Line chart was added to present the TV shows and movies released by year.
+- step 13 : Stack bar chart, to get the insights for the most content consumed by countries around the world.
+- step 14 : Stack column chart to show the TV rating for the content present in the sample data of Netflix.
 
-  (a) Baggage Handling
-
-  (b) Check-in Services
-  
-  (c) Cleanliness
-  
-  (d) Ease of online booking
-  
-  (e) Food & Drink
-  
-  (f) In-flight Entertainment
-
-  (g) In-flight Service
-  
-  (h) In-flight wifi service
-  
-  (i) Leg Room service
-  
-  (j) On-board service
-  
-  (k) Online boarding
-  
-  (l) Seat comfort
-  
-  (m) Departure & arrival time convenience
-  
-In our dataset, Some parameters were assigned value 0, representing those parameters are not applicable for some customers.
-
-All these values have been ignored while calculating average rating for each of the parameters mentioned above.
-
-- Step 12 : In the report view, under the insert tab, two text boxes were added to the canvas, in one of them name of the airlines was mentioned & in the other one company's tagline was written.
-- Step 13 : In the report view, under the insert tab, using shapes option from elements group a rectangle was inserted & similarly using image option company's logo was added to the report design area. 
-- Step 14 : Calculated column was created in which, customers were grouped into various age groups.
-
-for creating new column following DAX expression was written;
-       
-        Age Group = 
-        
-        if(airline_passenger_satisfaction[Age]<=25, "0-25 (25 included)",
-        
-        if(airline_passenger_satisfaction[Age]<=50, "25-50 (50 included)",
-        
-        if(airline_passenger_satisfaction[Age]<=75, "50-75 (75 included)",
-        
-        "75-100 (100 included)")))
-        
-Snap of new calculated column ,
-
-![Snap_1](https://user-images.githubusercontent.com/102996550/174089602-ab834a6b-62ce-4b62-8922-a1d241ec240e.jpg)
-
-        
-- Step 15 : New measure was created to find total count of customers.
-
-Following DAX expression was written for the same,
-        
-        Count of Customers = COUNT(airline_passenger_satisfaction[ID])
-        
-A card visual was used to represent count of customers.
-
-![Snap_Count](https://user-images.githubusercontent.com/102996550/174090154-424dc1a4-3ff7-41f8-9617-17a2fb205825.jpg)
-
-        
- - Step 16 : New measure was created to find  % of customers,
- 
- Following DAX expression was written to find % of customers,
- 
-         % Customers = (DIVIDE(airline_passenger_satisfaction[Count of Customers], 129880)*100)
- 
- A card visual was used to represent this perecntage.
- 
- Snap of % of customers who preferred business class
- 
- ![Snap_Percentage](https://user-images.githubusercontent.com/102996550/174090653-da02feb4-4775-4a95-affb-a211ca985d07.jpg)
-
- 
- - Step 17 : New measure was created to calculate total distance travelled by flights & a card visual was used to represent total distance.
- 
- Following DAX expression was written to find total distance,
- 
-         Total Distance Travelled = SUM(airline_passenger_satisfaction[Flight Distance])
-    
- A card visual was used to represent this total distance.
- 
- 
- ![Snap_3](https://user-images.githubusercontent.com/102996550/174091618-bf770d6c-34c6-44d4-9f5e-49583a6d5f68.jpg)
- 
- - Step 18 : The report was then published to Power BI Service.
- 
- 
-![Publish_Message](https://user-images.githubusercontent.com/102996550/174094520-3a845196-97e6-4d44-8760-34a64abc3e77.jpg)
 
 # Snapshot of Dashboard (Power BI Service)
 
@@ -131,86 +51,100 @@ A card visual was used to represent count of customers.
 
 # Insights
 
-A single page report was created on Power BI Desktop & it was then published to Power BI Service.
-
-Following inferences can be drawn from the dashboard;
-
-### [1] Total Number of Customers = 129880
-
-   Number of satisfied Customers (Male) = 28159 (21.68 %)
-
-   Number of satisfied Customers (Female) = 28269 (21.76 %)
-
-   Number of neutral/unsatisfied customers (Male) = 35822 (27.58 %)
-
-   Number of neutral/unsatisfied customers (Female) = 37630 (28.97 %)
-
-
-           thus, higher number of customers are neutral/unsatisfied.
-           
-### [2] Average Ratings
-
-    a) Baggage Handling - 3.63/5
-    b) Check-in Service - 3.31/5
-    c) Cleanliness - 3.29/5
-    d) Ease of online booking - 2.88/5
-    e) Food & Drink - 3.21/5
-    f) In-flight Entertainment - 3.36/5
-    g) In-flight service - 3.64/5
-    h) In-flight Wifi service - 2.81/5
-    i) Leg room service - 3.37/5
-    j) On-board service - 3.38/5
-    k) Online boarding - 3.33/5
-    l) Seat comfort - 3.44/5
-    m) Departure & arrival convenience - 3.22/5
+a) KPIs
+- Count of Cast : 6828
+- TV Shows : 2408
+- Movies : 5373
+- Total Content : 7781
+- Average Movie Runtime : 99 minutes
   
-  while calculating average rating, null values have been ignored as they were not relevant for some customers. 
+These metrics show Netflix currently hosts a large catalog with a higher share of movies than TV shows.
+
+b) Slicers
+- Genre : Dropdown (All / Individual Genres)
+- Release_Date : Dropdown (Year-based selection)
   
-  These ratings will change if different visual filters will be applied.  
+These slicers enable dynamic exploration of content trends.
+
+c) Visual Descriptions
+1] Line Chart - TV Shows and Movies by Release Year
+Shows content release trends from 2010 to 2022.
+
+Observed values:
+- 2010 - TV Shows: 1, Movies: 1
+- 2015 - TV Shows: 18, Movies: 6
+- 2020 - TV Shows: 1498, Movies: 430
+- 2021 - TV Shows: 69, Movies: 19
+- 2022 - Further decline visible
   
-  ### [3] Average Delay 
+Massive spike between 2017–2020, followed by a noticeable drop, likely due to production slowdowns.
+
+2] Map Visual – Global Content Distribution
+A world heatmap highlighting countries with higher Netflix content availability/consumption.
+
+Darkest areas:
+- North America
+- Europe
+- South Asia
+- Parts of South America
   
-      a) Average delay in arrival(minutes) - 15.09
-      b) Average delay in departure(minutes) - 14.71
-Average delay will change if different visual filters will be applied.
+This reflects Netflix’s strongest markets.
 
- ### [4] Some other insights
- 
- ### Class
- 
- 1.1) 47.87 % customers travelled by Business class.
- 
- 1.2) 44.89 % customers travelled by Economy class.
- 
- 1.3) 7.25 % customers travelled by Economy plus class.
- 
-         thus, maximum customers travelled by Business class.
- 
- ### Age Group
- 
- 2.1)  21.69 % customers belong to '0-25' age group.
- 
- 2.2)  52.44 % customers belong to '25-50' age group.
- 
- 2.3)  25.57 % customers belong to '50-75' age group.
- 
- 2.4)  0.31 % customers belong to '75-100' age group.
- 
-         thus, maximum customers belong to '25-50' age group.
-         
-### Customer Type
+3] Bar Chart – Content Consumed by Countries
+Countries:
+- United States : 2552
+- India : 923
+- Unknown : 506
+- United Kingdom : 397
+- Japan : 225
+- South Korea : 183
+- Canada : 177
+- Spain : 134
+- France : 115
+  
+The US remains the dominant market. "Unknown" likely indicates missing metadata.
 
-3.1) 18.31 % customers have customer type 'First time'.
+4] Bar Chart – Most Watched by Certificates
+- TV-MA : 2865
+- TV-14 : 1931
+- TV-PG : 805
+- R : 665
+- PG-13 : 386
+- TV-Y : 280
+- TV-Y7 : 271
+- PG : 247
+- TV-G : 194
+- NR : 84G39
+- TV-Y7-FV : 6
+- UR : 5
+- NC-17 : 5
+- Classic Movies : 1
 
-3.2) 81.69 % customers have customer type 'returning'.
-       
-       thus, more customers have customer type 'returning'.
+TV-MA and TV-14 make up the majority of watched content.
 
-### Type of travel
+d) Insights Based on Dashboard
+1] Content size
+- Netflix has 7,781 total titles
+- Movies outnumber TV shows nearly 2:1
 
-4.1) 69.06 % customers have travel type 'Business'.
+2] Runtime insight
+- Average movie runtime ≈ 99 minutes
 
-4.2) 30.94 % customers have travel type 'Personal'.
+3] Country consumption
+- United States leads by a large margin
+- India is the second-largest market
 
-        thus, more customers have travel type 'Business'.
+4] Certification preference
+- Mature-rated content (TV-MA) dominates, indicating adult audience preference
 
+5] Release trends
+- Massive spike in content releases between 2016–2020
+- Slight decline post-2020 (likely due to pandemic impacts)
+
+
+e) Snapshot Description
+The dashboard uses:
+- Dark Netflix-style theme
+- Bold red borders
+- Clear layout: KPIs → Filters → Visuals
+- Mix of map, bar charts, line chart, and KPIs
