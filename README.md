@@ -41,7 +41,7 @@ The dashboard can support content strategy, regional expansion decisions, and ca
   # Report Snapshot (Power BI DESKTOP)
 
  
-![Dashboard_upload](https://github.com/rahulgowda2003/Netflix-Sample-Data-Dashboard/blob/main/Netflix%20Dashboard%20screenshot.png)
+![Dashboard_upload](https://github.com/rahulgowda2003/Netflix-Sample-Data-Dashboard/blob/main/Netflix%20Dashboard%20Screenshot.png)
 
 # Insights
 
