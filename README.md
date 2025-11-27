@@ -4,6 +4,7 @@
 ## Problem Statement
 
 This dashboard provides an analytical overview of Netflix’s sample content from 2010-2022.
+
 It helps stakeholders understand:
 - The size of Netflix's content library
 - Distribution of TV shows vs movies
@@ -90,6 +91,7 @@ These slicers enable dynamic exploration of content trends.
 c) Visual Descriptions
 
 1] Line Chart - TV Shows and Movies by Release Year
+
 Shows content release trends from 2010 to 2022.
 
 Observed values:
@@ -102,6 +104,7 @@ Observed values:
 Massive spike between 2017–2020, followed by a noticeable drop, likely due to production slowdowns.
 
 2] Map Visual – Global Content Distribution
+
 A world heatmap highlighting countries with higher Netflix content availability/consumption.
 
 Darkest areas:
@@ -113,6 +116,7 @@ Darkest areas:
 This reflects Netflix’s strongest markets.
 
 3] Bar Chart – Content Consumed by Countries
+
 Countries:
 - United States : 2552
 - India : 923
@@ -127,6 +131,7 @@ Countries:
 The US remains the dominant market. "Unknown" likely indicates missing metadata.
 
 4] Bar Chart – Most Watched by Certificates
+
 - TV-MA : 2865
 - TV-14 : 1931
 - TV-PG : 805
@@ -145,27 +150,35 @@ The US remains the dominant market. "Unknown" likely indicates missing metadata.
 TV-MA and TV-14 make up the majority of watched content.
 
 d) Insights Based on Dashboard
+
 1] Content size
+
 - Netflix has 7,781 total titles
 - Movies outnumber TV shows nearly 2:1
 
 2] Runtime insight
+
 - Average movie runtime ≈ 99 minutes
 
 3] Country consumption
+
 - United States leads by a large margin
 - India is the second-largest market
 
 4] Certification preference
+
 - Mature-rated content (TV-MA) dominates, indicating adult audience preference
 
 5] Release trends
+
 - Massive spike in content releases between 2016–2020
 - Slight decline post-2020 (likely due to pandemic impacts)
 
 
 e) Snapshot Description
+
 The dashboard uses:
+
 - Dark Netflix-style theme
 - Bold red borders
 - Clear layout: KPIs → Filters → Visuals
