@@ -23,15 +23,34 @@ The dashboard can support content strategy, regional expansion decisions, and ca
 - Step 3 : By default, column profile will be opened only for 1000 rows, so you will need to select "column profiling based on entire dataset".
 - Step 4 : It was observed that in none of the columns errors and empty values were present except in columns named "Rating", "Release Date", "Country",
            "Cast" and "Director".
-- Step 5 : For calculating null values, replaced the null values with the mode of the same column(for the numerical values present having <1% null values and                 categorical column with <1% null values were removed) and for the other categorical values with >5% null values, filled the null values as "Unknown".
+- Step 5 : For calculating null values, replaced the null values with the mode of the same column(for the numerical values present having <1% null values and
+           categorical column with <1% null values were removed) and for the other categorical values with >5% null values, filled the null values as "Unknown".
 - step 6 : New column named "Release Year" made to extract the year from "Release Date" column, the null values present in the "Release Year" was filled with
            mode.
+           a) DAX for Release Year = YEAR(Netflix[Release_Date])
 - Step 7 : In the report view, added Netflix's logo and name tag.
 - Step 8 : Visual filters (Slicers) were added for two fields named "Release Date" and "Genre".
 - step 9 : Five measures careated in the new model named "Measure's Table" and one in Netflix's table. Measure's Table contains Avg movie runtime, count of cast,
            movies, num of titles and TV shows, where as in the Netflix's table contains Runtime measure.
+           a) DAX for Avg movie runtime = CALCULATE(AVERAGE(Netflix[Runtime (Minutes)]),
+                                                            Netflix[Category] = "Movie")
+           b) DAX for Count of cast = DISTINCTCOUNT(Netflix[Cast])
+           c) DAX for Movies = COUNTROWS(FILTER(Netflix,
+                                                Netflix[Category] = "Movie"))
+           d) DAX for Num of titles = COUNT(Netflix[Title])
+           e) DAX for TV Shows = COUNTROWS(FILTER(Netflix,
+                                                  Netflix[Category] = "TV Show"))
+           f) DAX for Runtime (Minutes) =  VAR txt0 = LOWER( TRIM( Netflix[Duration] ) )
+                                           VAR txt1 = SUBSTITUTE( SUBSTITUTE( SUBSTITUTE( txt0, "mins", "" ), "min", "" ), "minutes", "" )
+                                           VAR txt2 = SUBSTITUTE( SUBSTITUTE( txt1, "seasons", "" ), "season", "" )
+                                           VAR txt3 = TRIM( txt2 )
+                                           VAR pos = FIND( " ", txt3, 1, 0 )          // position of first space (0 if none)
+                                           VAR numText = IF( pos > 0, LEFT( txt3, pos - 1 ), txt3 )
+                                           VAR numValue = IFERROR( VALUE( numText ), BLANK() )
+                                           RETURN
+                                           numValue
 - Step 10 : Five card visuals were added to the canvas/dashboard, representing "count of cast", "TV Shows", "Movies", "Total Content" and "Average Movies Runtime".
-           Using visual level filter from the filters pane, basic filtering was used & null values were unselected for consideration into average calculation.
+            Using visual level filter from the filters pane, basic filtering was used & null values were unselected for consideration into average calculation.
 - Step 11 : Filled map was inserted to showcase the content consumed by the countries around the world. 
 - Step 12 : Line chart was added to present the TV shows and movies released by year.
 - step 13 : Stack bar chart, to get the insights for the most content consumed by countries around the world.
