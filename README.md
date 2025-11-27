@@ -80,6 +80,7 @@ b) Slicers
 These slicers enable dynamic exploration of content trends.
 
 c) Visual Descriptions
+
 1] Line Chart - TV Shows and Movies by Release Year
 Shows content release trends from 2010 to 2022.
 
