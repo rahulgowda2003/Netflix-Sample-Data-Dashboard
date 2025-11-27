@@ -27,19 +27,26 @@ The dashboard can support content strategy, regional expansion decisions, and ca
            categorical column with <1% null values were removed) and for the other categorical values with >5% null values, filled the null values as "Unknown".
 - step 6 : New column named "Release Year" made to extract the year from "Release Date" column, the null values present in the "Release Year" was filled with
            mode.
+  
            a) DAX for Release Year = YEAR(Netflix[Release_Date])
 - Step 7 : In the report view, added Netflix's logo and name tag.
 - Step 8 : Visual filters (Slicers) were added for two fields named "Release Date" and "Genre".
 - step 9 : Five measures careated in the new model named "Measure's Table" and one in Netflix's table. Measure's Table contains Avg movie runtime, count of cast,
            movies, num of titles and TV shows, where as in the Netflix's table contains Runtime measure.
+  
            a) DAX for Avg movie runtime = CALCULATE(AVERAGE(Netflix[Runtime (Minutes)]),
                                                             Netflix[Category] = "Movie")
+  
            b) DAX for Count of cast = DISTINCTCOUNT(Netflix[Cast])
+  
            c) DAX for Movies = COUNTROWS(FILTER(Netflix,
                                                 Netflix[Category] = "Movie"))
+  
            d) DAX for Num of titles = COUNT(Netflix[Title])
+  
            e) DAX for TV Shows = COUNTROWS(FILTER(Netflix,
                                                   Netflix[Category] = "TV Show"))
+  
            f) DAX for Runtime (Minutes) =  VAR txt0 = LOWER( TRIM( Netflix[Duration] ) )
                                            VAR txt1 = SUBSTITUTE( SUBSTITUTE( SUBSTITUTE( txt0, "mins", "" ), "min", "" ), "minutes", "" )
                                            VAR txt2 = SUBSTITUTE( SUBSTITUTE( txt1, "seasons", "" ), "season", "" )
@@ -49,6 +56,7 @@ The dashboard can support content strategy, regional expansion decisions, and ca
                                            VAR numValue = IFERROR( VALUE( numText ), BLANK() )
                                            RETURN
                                            numValue
+  
 - Step 10 : Five card visuals were added to the canvas/dashboard, representing "count of cast", "TV Shows", "Movies", "Total Content" and "Average Movies Runtime".
             Using visual level filter from the filters pane, basic filtering was used & null values were unselected for consideration into average calculation.
 - Step 11 : Filled map was inserted to showcase the content consumed by the countries around the world. 
