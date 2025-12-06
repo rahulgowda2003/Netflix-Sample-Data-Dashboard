@@ -1,4 +1,4 @@
-# Netflix Sample Data Dashboard
+# Netflix Sample Data Dashboard- Power BI
 
 
 ## Problem Statement
